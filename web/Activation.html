@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Account | web3.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --dark: #0f172a;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --error: #ef233c;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --input-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            padding: 24px 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--primary-light);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            cursor: pointer;
+        }
+
+        .activation-container {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 24px;
+            width: 100%;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .activation-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .activation-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(72, 149, 239, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .activation-icon i {
+            font-size: 28px;
+            color: var(--primary-light);
+        }
+
+        .activation-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .activation-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .key-input {
+            width: 100%;
+            padding: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 12px;
+            font-size: 16px;
+            color: white;
+            font-family: monospace;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .key-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .key-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: normal;
+        }
+
+        .input-hint {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: white;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        .action-button:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 16px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: auto;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .activation-container {
+                padding: 20px;
+            }
+
+            .activation-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </button>
+
+        <div class="activation-container">
+            <div class="activation-header">
+                <div class="activation-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h1 class="activation-title">Enter Activation Key</h1>
+                <p class="activation-subtitle">Please enter your product activation key</p>
+            </div>
+
+            <form id="activationForm">
+                <div class="input-group">
+                    <label class="input-label">Activation Key</label>
+                    <input type="text" class="key-input" placeholder="XXXX-XXXX-XXXX" id="activationKey" required>
+                    <div class="input-hint">
+                        <i class="fas fa-info-circle"></i>
+                        Case sensitive - enter exactly as provided
+                    </div>
+                </div>
+
+                <button type="submit" class="action-button" id="activateButton">
+                    <i class="fas fa-unlock-alt"></i>
+                    Activate Account
+                </button>
+            </form>
+        </div>
+
+        <footer>web3.com © 2023 | Secure Activation</footer>
+
+    </div>
+    <script>
+        document.getElementById('activationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const activateButton = document.getElementById('activateButton');
+            const originalText = activateButton.innerHTML;
+
+            // Show loading state
+            activateButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            activateButton.disabled = true;
+
+            // Validate key
+            const activationKey = document.getElementById('activationKey').value.trim();
+
+            if (!activationKey) {
+                showError('Please enter an activation key');
+                activateButton.innerHTML = originalText;
+                activateButton.disabled = false;
+                return;
+            }
+
+            // Simulate key verification
+            if (activationKey !== "1234-5678-9101") {
+                showError('Invalid activation key format');
+                activateButton.innerHTML = originalText;
+                activateButton.disabled = false;
+                return;
+            }
+            // Simulate verification delay
+            setTimeout(function () {
+                // In a real app, you would verify the key with your backend here
+                window.location.href = './transactionSuccess.html';
+            }, 2000);
+        });
+
+        // Format selector functionality
+        function showError(message) {
+            // In a real app, you would show this error to the user
+            console.error(message);
+        }
+    </script>
+</body>
+
+</html>

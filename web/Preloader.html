@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading | web3.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --dark: #0f172a;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .preloader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .logo-loader {
+            width: 80px;
+            height: 80px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .logo-loader i {
+            font-size: 36px;
+            color: white;
+        }
+
+        .loader-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 16px;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            border-radius: 2px;
+            animation: progress 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1) rotate(0deg);
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+            }
+            50% {
+                transform: scale(1.05) rotate(5deg);
+                box-shadow: 0 0 20px 10px rgba(67, 97, 238, 0.1);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+            }
+        }
+
+        @keyframes progress {
+            0% {
+                width: 0%;
+                margin-left: 0;
+            }
+            50% {
+                width: 100%;
+                margin-left: 0;
+            }
+            100% {
+                width: 0%;
+                margin-left: 100%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 24px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .logo-loader {
+                width: 100px;
+                height: 100px;
+                border-radius: 24px;
+            }
+            
+            .logo-loader i {
+                font-size: 42px;
+            }
+            
+            .loader-text {
+                font-size: 20px;
+            }
+            
+            .progress-bar {
+                width: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader-container">
+        <div class="logo-loader">
+            <i class="fas fa-cube"></i>
+        </div>
+        <div class="loader-text">Securing Connection</div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+    
+    <footer>web3.com © 2023</footer>
+
+    <script>
+        // Simulate loading completion
+        setTimeout(function() {
+            window.location.href = './home.html'; // Replace with your target page
+        }, 3000);
+    </script>
+</body>
+</html>

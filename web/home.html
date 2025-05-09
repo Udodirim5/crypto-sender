@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Menu | web3.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --dark: #1a2a44;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --usdt-color: #00c853;
+            --key-color: #ffab00;
+            --contact-color: #536dfe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 16px;
+            max-width: 480px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .logo {
+            all: unset;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: var(--primary-light);
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.2), rgba(72, 149, 239, 0.2));
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.marquee p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 10s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+        .balance-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+        }
+
+        .balance-amount {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #b3e5fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .action-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .action-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .send {
+            background-color: var(--usdt-color);
+            color: white;
+        }
+
+        .buy {
+            background-color: var(--key-color);
+            color: #1e2026;
+        }
+
+        .contact {
+            background-color: var(--contact-color);
+            color: white;
+        }
+
+        .action-content {
+            flex: 1;
+        }
+
+        .action-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .action-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .chevron {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+
+
+
+
+
+        .quick-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .action-btn {
+            all: unset;
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .action-btn i {
+            font-size: 20px;
+            color: var(--primary-light);
+        }
+
+        .action-btn span {
+            font-size: 12px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 16px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: auto;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .action-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .action-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .action-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .action-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .balance-card {
+                padding: 16px;
+            }
+
+            .action-card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="./Preloader.html" class="logo">
+                <i class="fas fa-cube"></i>
+                <span>web3.com</span>
+            </a>
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+        </header>
+
+        <div class="balance-card">
+            <div class="marquee balance-label">
+                <p>WWW.WEBSITENAME.COM</p>
+            </div>
+            <div class="balance-amount">APP NAME</div>
+        </div>
+
+        <div class="action-grid">
+            <a href="./send.html" class="action-card">
+                <div class="action-icon send">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="action-content">
+                    <div class="action-title">Send USDT</div>
+                    <div class="action-desc">Transfer to another wallet</div>
+                </div>
+                <div class="chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="#" class="action-card">
+                <div class="action-icon buy">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="action-content">
+                    <div class="action-title">Buy Activation Key</div>
+                    <div class="action-desc">Purchase license keys</div>
+                </div>
+                <div class="chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="#" class="action-card">
+                <div class="action-icon contact">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="action-content">
+                    <div class="action-title">Contact Us</div>
+                    <div class="action-desc">24/7 customer support</div>
+                </div>
+                <div class="chevron">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="quick-actions">
+            <div class="action-btn">
+                <i class="fas fa-qrcode"></i>
+                <span>Scan</span>
+            </div>
+            <a href="./history.html" class="action-btn">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+            <div class="action-btn">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </div>
+        </div>
+        
+        <footer>web3.com © 2023 | Secure Platform</footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Wallet App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00F5FF;
+            --primary-dark: #00C4CC;
+            --background: #0F1A2F;
+            --card-bg: #1A2A44;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A8C0;
+            --success: #33FF33;
+            --error: #FF3366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .app-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, var(--primary), #0066FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, #1A2A44, #0F1A2F);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .balance-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .balance-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .balance-change {
+            color: var(--success);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .action-button {
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            background-color: rgba(0, 245, 255, 0.1);
+        }
+
+        .action-button i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .main-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .main-button {
+            background-color: var(--primary);
+            color: var(--background);
+            border: none;
+            border-radius: 12px;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .main-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 245, 255, 0.4);
+        }
+
+        .main-button.secondary {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            box-shadow: none;
+        }
+
+        .main-button.secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .network-selector {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .network-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .network-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .network-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .network-option:hover {
+            background-color: rgba(0, 245, 255, 0.1);
+        }
+
+        .network-option.active {
+            background-color: rgba(0, 245, 255, 0.2);
+        }
+
+        .network-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--background);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .network-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .network-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--success);
+        }
+
+        .app-footer {
+            text-align: center;
+            padding: 16px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-top: auto;
+        }
+
+        /* Animation classes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Responsive adjustments */
+        @media (max-width: 400px) {
+            .app-container {
+                padding: 16px;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header animate-in">
+            <div class="logo">CRYPTOAPP</div>
+            <div class="user-avatar">JD</div>
+        </header>
+
+        <div class="balance-card animate-in delay-1">
+            <div class="balance-label">Total Balance</div>
+            <div class="balance-amount">$12,458.32</div>
+            <div class="balance-change">
+                <i class="fas fa-arrow-up" style="margin-right: 4px;"></i>
+                4.2% this month
+            </div>
+        </div>
+
+        <div class="action-buttons animate-in delay-2">
+            <button class="action-button">
+                <i class="fas fa-arrow-up"></i>
+                Send
+            </button>
+            <button class="action-button">
+                <i class="fas fa-arrow-down"></i>
+                Receive
+            </button>
+            <button class="action-button">
+                <i class="fas fa-exchange-alt"></i>
+                Swap
+            </button>
+            <button class="action-button">
+                <i class="fas fa-chart-line"></i>
+                Stats
+            </button>
+        </div>
+
+        <div class="main-actions animate-in delay-3">
+            <button class="main-button">
+                <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                Send USDT
+            </button>
+            <button class="main-button secondary">
+                <i class="fas fa-key" style="margin-right: 8px;"></i>
+                Buy Activation Key
+            </button>
+            <button class="main-button secondary">
+                <i class="fas fa-headset" style="margin-right: 8px;"></i>
+                Contact Support
+            </button>
+        </div>
+
+        <div class="network-selector animate-in delay-4">
+            <div class="network-title">Select Network</div>
+            <div class="network-options">
+                <div class="network-option active">
+                    <div class="network-icon">T</div>
+                    <div class="network-name">TRC20</div>
+                    <div class="network-status"></div>
+                </div>
+                <div class="network-option">
+                    <div class="network-icon">E</div>
+                    <div class="network-name">ERC20</div>
+                    <div class="network-status"></div>
+                </div>
+                <div class="network-option">
+                    <div class="network-icon">B</div>
+                    <div class="network-name">BEP20</div>
+                    <div class="network-status"></div>
+                </div>
+                <div class="network-option">
+                    <div class="network-icon">P</div>
+                    <div class="network-name">Polygon</div>
+                    <div class="network-status"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            web3.com • v2.4.1
+        </footer>
+    </div>
+
+    <script>
+        // Simple interaction enhancements
+        document.querySelectorAll('.network-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.network-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>

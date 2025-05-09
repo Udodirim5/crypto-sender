@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Transfer | website.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --dark: #1a2a44;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 16px;
+            max-width: 480px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            all: unset;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: var(--primary-light);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--card-border);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #fff, #b3e5fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .network-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .network-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .network-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .trc20 {
+            background-color: #e74c3c;
+        }
+
+        .erc20 {
+            background-color: #3b5998;
+        }
+
+        .bep20 {
+            background-color: #f0b90b;
+            color: #1e2026;
+        }
+
+        .polygon {
+            background-color: #8247e5;
+        }
+
+        .sol {
+            background-color: #00ffbd;
+            color: #1e2026;
+        }
+
+        .ton {
+            background-color: #0088cc;
+        }
+
+        .network-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .network-desc {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: auto;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .network-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .network-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .network-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .network-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .network-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .network-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .network-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .network-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .network-card {
+                flex-direction: row;
+                align-items: center;
+                gap: 16px;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="./Preloader.html" class="logo">
+                <i class="fas fa-cube"></i>
+                <span>web3.com</span>
+            </a>
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+        </header>
+
+        <h1>Select Network</h1>
+        <p class="subtitle">Choose a blockchain network for your transaction</p>
+
+
+        <div class="network-grid">
+            <a href="./SendForm.html" class="network-card">
+                <div class="network-icon trc20">
+                    <i class="fab fa-bitcoin"></i>
+                </div>
+                <div class="network-name">TRC20</div>
+                <div class="network-desc">Tron Network</div>
+            </a>
+
+            <a href="./SendForm.html" class="network-card">
+                <div class="network-icon erc20">
+                    <i class="fab fa-ethereum"></i>
+                </div>
+                <div class="network-name">ERC20</div>
+                <div class="network-desc">Ethereum Network</div>
+            </a>
+
+            <a href="./SendForm.html" class="network-card">
+                <div class="network-icon bep20">
+                    <i class="fas fa-b"></i>
+                </div>
+                <div class="network-name">BEP20</div>
+                <div class="network-desc">Binance Smart Chain</div>
+            </a>
+
+            <a href="./SendForm.html" class="network-card">
+                <div class="network-icon polygon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="network-name">Polygon</div>
+                <div class="network-desc">Polygon PoS</div>
+            </a>
+
+            <a href="./SendForm.html" class="network-card">
+                <div class="network-icon sol">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="network-name">SOL</div>
+                <div class="network-desc">Solana Network</div>
+            </a>
+
+            <a href="./SendForm.html" class="network-card">
+                <div class="network-icon ton">
+                    <i class="fas fa-telegram"></i>
+                </div>
+                <div class="network-name">TON</div>
+                <div class="network-desc">The Open Network</div>
+            </a>
+        </div>
+        <footer>website.com © 2023</footer>
+    </div>
+
+</body>
+
+</html>
