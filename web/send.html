@@ -26,6 +26,10 @@
             box-sizing: border-box;
         }
 
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #0f172a, #1e293b);
@@ -87,6 +91,7 @@
             background: linear-gradient(to right, #fff, #b3e5fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subtitle {
@@ -100,10 +105,15 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             margin-bottom: 24px;
+            border-radius: 16px;
+            padding: 16px;
+            max-height: 60dvh;
+            overflow-y: auto;
         }
 
         .network-card {
             background: var(--card-bg);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
             border-radius: 16px;
